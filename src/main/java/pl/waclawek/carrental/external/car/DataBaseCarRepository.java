@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class DataBaseCarRepository implements CarRepository {
 
-    CarRepositoryJPA carRepositoryJPA;
+    private final CarRepositoryJPA carRepositoryJPA;
 
     @Override
     public void create(Car car) {

@@ -9,6 +9,7 @@ public class ApiExceptionHandler {
 
     @ExceptionHandler(RuntimeException.class)
     ResponseEntity<String> handleError(RuntimeException ex) {
+        ex.printStackTrace();
         return ResponseEntity
                 .status(422)
                 .body(ex.getMessage());

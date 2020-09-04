@@ -1,7 +1,6 @@
 package pl.waclawek.carrental.web.car;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.waclawek.carrental.domain.car.Car;
@@ -15,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CarEndpoint {
 
-    CarService carService;
+   private final CarService carService;
 
     @GetMapping
     List<Car> getAllCars() {
