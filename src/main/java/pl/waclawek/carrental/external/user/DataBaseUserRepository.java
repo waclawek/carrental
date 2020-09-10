@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.waclawek.carrental.domain.user.User;
 import pl.waclawek.carrental.domain.user.UserRepository;
-import pl.waclawek.carrental.domain.user.UserService;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +16,7 @@ public class DataBaseUserRepository implements UserRepository {
 
     @Override
     public void create(User user) {
-        UserEntity userEntity = new UserEntity().builder()
+        UserEntity userEntity = UserEntity.builder()
                 .id(user.getId())
                 .username(user.getUsername())
                 .password(user.getPassword())
