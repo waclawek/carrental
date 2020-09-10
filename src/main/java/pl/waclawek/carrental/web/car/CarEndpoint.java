@@ -10,7 +10,7 @@ import pl.waclawek.carrental.domain.car.CarService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/car")
+@RequestMapping("/api/car")
 @RequiredArgsConstructor
 public class CarEndpoint {
 
@@ -23,7 +23,7 @@ public class CarEndpoint {
 
     @GetMapping("/{id}")
     Car getOneById(@PathVariable int id) {
-        return carService.findAll().get(id);
+        return carService.findAll().get(--id);
     }
 
     @PostMapping

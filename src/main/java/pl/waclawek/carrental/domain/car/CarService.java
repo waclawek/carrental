@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -17,6 +18,10 @@ public class CarService {
 
     public List<Car> findAll(){
         return repository.getAll();
+    }
+
+    public Car findById(int id){
+        return repository.getOne(id).orElseThrow(()-> new IllegalArgumentException("Car with provided id no not exist"));
     }
 
 

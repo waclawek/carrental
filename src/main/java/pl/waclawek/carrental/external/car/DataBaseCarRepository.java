@@ -30,7 +30,7 @@ public class DataBaseCarRepository implements CarRepository {
 
     @Override
     public Optional<Car> getOne(int id) {
-        return Optional.empty();
+        return carRepositoryJPA.findById(id).map(mapToDomain());
     }
 
     @Override
@@ -57,6 +57,7 @@ public class DataBaseCarRepository implements CarRepository {
 
     @Override
     public void delete(int id) {
+        carRepositoryJPA.deleteById(id);
 
     }
 }
