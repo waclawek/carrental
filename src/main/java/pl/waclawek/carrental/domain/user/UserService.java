@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -18,6 +20,10 @@ public class UserService {
 
         user.encodePassword(passwordEncoder, user.getPassword());
         userRepository.create(user);
+    }
+
+    public List<User> getAll(){
+        return userRepository.getAll();
     }
 
     private void deleteById(int id){

@@ -1,6 +1,7 @@
 package pl.waclawek.carrental.mvc;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,9 +16,17 @@ public class CarController {
     private final CarService carService;
 
     @GetMapping
+    @PreAuthorize("isAuthenticated()")
     ModelAndView carPage() {
         ModelAndView mav = new ModelAndView("cars.html");
         mav.addObject("cars", carService.findAll());
+        return mav;
+    }
+
+    @GetMapping("/add")
+    @PreAuthorize("isAuthenticated()")
+    ModelAndView addCar() {
+        ModelAndView mav = new ModelAndView("addCar.html");
         return mav;
     }
 

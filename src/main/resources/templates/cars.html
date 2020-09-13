@@ -7,6 +7,23 @@
 <body>
 <p> Hello to Car list page choose your car</p>
 
+<table>
+    <thead>
+    <td>make</td>
+    <td>model</td>
+    <td>production year</td>
+    <td>daily rate</td>
+    </thead>
+    <tbody>
+    <tr th:each="car : ${cars}">
+        <td><span th:text="${car.make}"></span></td>
+        <td><span th:text="${car.model}"></span> </td>
+        <td><span th:text="${car.productionDate}"></span></td>
+        <td><span th:text="${car.dailyRate}"></span></td>
+    </tr>
+    </tbody>
+</table>
+<a class="btn btn-primary" href="@{/add}" role="button">AddCar</a>
 
 </body>
 </html>

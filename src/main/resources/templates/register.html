@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Register new user</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+</head>
+<body>
+<p>Register new user</p>
+
+<form method="post" th:action="@{/user}" th:object="${user}">
+    <input type="hidden" th:field="*{id}"/>
+    <div class="form-group">
+        <label for="username">Username :</label>
+        <input type="text" id="username" th:field="*{username}">
+    </div>
+    <div class="form-group">
+        <label for="password">Password :</label>
+        <input type="password" id="password" th:field="*{password}">
+    </div>
+    <div>
+        <select th:filed="*{role}">
+            <option value="USER">User</option>
+            <option value="ADMIN">Admin</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-outline-info">Create user</button>
+</form>
+
+
+</body>
+</html>
