@@ -1,9 +1,6 @@
 package pl.waclawek.carrental.domain.user;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 
@@ -11,6 +8,7 @@ import javax.validation.constraints.NotEmpty;
 
 @Builder
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
@@ -20,7 +18,7 @@ public class User {
     private String username;
     @NotEmpty(message = "Password have to be filled")
     private String password;
-    private ROLE role;
+    private String role;
 
     public void encodePassword(PasswordEncoder passwordEncoder, String providedPassword){
         this.password = passwordEncoder.encode(providedPassword);

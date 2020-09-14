@@ -36,7 +36,6 @@ public class UserController {
 
     @PostMapping()
     String registerUser(@ModelAttribute User user, Model model){
-        model.getAttribute("user");
         userService.registerUser(user);
         return "redirect:/";
     }

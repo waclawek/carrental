@@ -21,10 +21,10 @@
         <input type="password" id="password" th:field="*{password}">
     </div>
     <div>
-        <select th:filed="*{role}">
-            <option value="USER">User</option>
-            <option value="ADMIN">Admin</option>
-        </select>
+        <select th:field="*{role}">
+            <option value="ADMIN">admin</option>
+            <option value="USER">user</option>
+        </select><br>
     </div>
     <button type="submit" class="btn btn-outline-info">Create user</button>
 </form>

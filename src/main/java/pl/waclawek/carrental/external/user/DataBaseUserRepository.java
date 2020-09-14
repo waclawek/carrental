@@ -20,7 +20,7 @@ public class DataBaseUserRepository implements UserRepository {
                 .id(user.getId())
                 .username(user.getUsername())
                 .password(user.getPassword())
-                .role(user.getRole().toString())
+                .role(user.getRole())
                 .build();
         userRepositoryJPA.save(userEntity);
     }
