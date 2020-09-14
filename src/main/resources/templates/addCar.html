@@ -1,14 +1,40 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="thymeleaf.org">
 <head>
-    <meta charset="UTF-8" >
+    <meta charset="UTF-8">
     <title>Add car</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
 </head>
 <body>
 
 <p>add car page</p>
 
-<a class="btn btn-primary" href="@{/}" role="button">return</a>
+<form method="post" th:action="@{/car}" th:object="${car}">
+    <div class="form-group">
+        <label for="make">Make:</label>
+        <input type="text" placeholder="i.e. Ford" id="make" th:field="*{make}">
+    </div>
+    <div class="form-group">
+        <label for="model">Model:</label>
+        <input type="text" placeholder="i.e. Focus" id="model" th:field="*{model}">
+    </div>
+    <div class="form-group">
+        <label for="productionYear">Production year:</label>
+        <input type="date" id="productionYear" th:field="*{productionYear}">
+    </div>
+    <div class="form-group">
+        <label for="dailyRate">Daily rate</label>
+        <input type="number" placeholder="12.5" id="dailyRate" th:field="*{dailyRate}">
+    </div>
+    <button type="submit" class="btn btn-outline-info">Create Car</button>
+</form>
+
+<br>
+
+<a class=" btn btn-primary
+    " href="@{/car}" role="button">return</a>
 
 
 </body>

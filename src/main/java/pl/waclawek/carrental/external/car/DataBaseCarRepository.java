@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import pl.waclawek.carrental.domain.car.Car;
 import pl.waclawek.carrental.domain.car.CarRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -21,7 +22,7 @@ public class DataBaseCarRepository implements CarRepository {
         CarEntity carEntity = CarEntity.builder()
                 .make(car.getMake())
                 .model(car.getModel())
-                .productionDate(car.getProductionDate())
+                .productionYear(car.getProductionYear())
                 .dailyRate(car.getDailyRate())
                 .build();
 
@@ -45,7 +46,7 @@ public class DataBaseCarRepository implements CarRepository {
         return carEntity -> new Car(carEntity.getId(),
                 carEntity.getMake(),
                 carEntity.getModel(),
-                carEntity.getProductionDate(),
+                carEntity.getProductionYear(),
                 carEntity.getDailyRate());
 
     }

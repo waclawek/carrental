@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Cars page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
 </head>
 <body>
 <p> Hello to Car list page choose your car</p>
@@ -18,12 +21,13 @@
     <tr th:each="car : ${cars}">
         <td><span th:text="${car.make}"></span></td>
         <td><span th:text="${car.model}"></span> </td>
-        <td><span th:text="${car.productionDate}"></span></td>
+        <td><span th:text="${car.productionYear}"></span></td>
         <td><span th:text="${car.dailyRate}"></span></td>
     </tr>
     </tbody>
 </table>
-<a class="btn btn-primary" href="@{/add}" role="button">AddCar</a>
+
+<a class="btn btn-primary" th:href="@{car/add}" role="button">Add new car</a>
 
 </body>
 </html>

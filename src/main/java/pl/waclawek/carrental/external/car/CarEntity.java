@@ -19,7 +19,7 @@ public class CarEntity {
     private Integer id;
     private String make;
     private String model;
-    private LocalDate productionDate;
+    private LocalDate productionYear;
     private BigDecimal dailyRate;
 
 

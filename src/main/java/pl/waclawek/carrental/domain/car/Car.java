@@ -1,17 +1,21 @@
 package pl.waclawek.carrental.domain.car;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Builder
+@Getter
+@Setter
 public class Car {
     private Integer id;
     private String make;
     private String model;
-    private LocalDate productionDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate productionYear;
     private BigDecimal dailyRate;
 }
