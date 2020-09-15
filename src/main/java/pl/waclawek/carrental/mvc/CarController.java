@@ -19,7 +19,7 @@ public class CarController {
     private final CarService carService;
 
     @GetMapping
-   // @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     ModelAndView carPage() {
         ModelAndView mav = new ModelAndView("cars.html");
         mav.addObject("cars", carService.findAll());
@@ -27,7 +27,7 @@ public class CarController {
     }
 
     @GetMapping("/add")
-   // @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     ModelAndView addCar() {
         ModelAndView mav = new ModelAndView("addCar.html");
         mav.addObject("car", new Car());
@@ -35,7 +35,7 @@ public class CarController {
     }
 
     @PostMapping()
-   // @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("isAuthenticated()")
     String createCar(@ModelAttribute Car car){
         carService.create(car);
         return "redirect:/car";

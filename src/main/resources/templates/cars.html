@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="thymeleaf.org">
+<html lang="en" xmlns:th="thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Cars page</title>
@@ -27,7 +27,9 @@
     </tbody>
 </table>
 
+<div sec:authorize="hasRole('ADMIN')">
 <a class="btn btn-primary" th:href="@{car/add}" role="button">Add new car</a>
+</div>
 
 </body>
 </html>
