@@ -3,8 +3,13 @@ package pl.waclawek.carrental.domain.user;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import pl.waclawek.carrental.external.user.UserEntity;
 
+import java.security.InvalidKeyException;
+import java.security.InvalidParameterException;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Function;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +30,15 @@ public class UserService {
     public List<User> getAll(){
         return userRepository.getAll();
     }
+
+    public int getIdByUsername(String username){
+        Optional<User> userOptional = userRepository.getByUsername(username);
+        if(userOptional.isPresent()){
+            return userOptional.get().getId();
+        }
+        throw new InvalidParameterException("no user with this username");
+    }
+
 
     private void deleteById(int id){
         userRepository.deleteById(id);

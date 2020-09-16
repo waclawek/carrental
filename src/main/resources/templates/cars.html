@@ -8,6 +8,8 @@
 
 </head>
 <body>
+<!--<div th:replace="fragments/navibar :: navigation"></div>-->
+
 <p> Hello to Car list page choose your car</p>
 
 <table>
@@ -16,6 +18,7 @@
     <td>model</td>
     <td>production year</td>
     <td>daily rate</td>
+    <td>action</td>
     </thead>
     <tbody>
     <tr th:each="car : ${cars}">
@@ -23,6 +26,7 @@
         <td><span th:text="${car.model}"></span> </td>
         <td><span th:text="${car.productionYear}"></span></td>
         <td><span th:text="${car.dailyRate}"></span></td>
+        <td><a class="btn btn-primary" th:href="@{rent/add}" role="button">Rent car</a></td>
     </tr>
     </tbody>
 </table>

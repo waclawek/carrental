@@ -20,7 +20,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/all")
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasRole('ADMIN')")
     ModelAndView allUsers(){
         ModelAndView mav = new ModelAndView("users.html");
         mav.addObject("users", userService.getAll());

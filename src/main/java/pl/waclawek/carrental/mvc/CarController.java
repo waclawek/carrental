@@ -22,6 +22,7 @@ public class CarController {
     @PreAuthorize("isAuthenticated()")
     ModelAndView carPage() {
         ModelAndView mav = new ModelAndView("cars.html");
+        //todo filer by avaliablityl
         mav.addObject("cars", carService.findAll());
         return mav;
     }
@@ -34,8 +35,16 @@ public class CarController {
         return mav;
     }
 
+    @GetMapping("/all")
+    @PreAuthorize("hasRole('ADMIN')")
+    ModelAndView allCars(){
+        ModelAndView mav = new ModelAndView("allCars.html");
+        mav.addObject("cars", carService.findAll());
+        return mav;
+    }
+
     @PostMapping()
-    @PreAuthorize("isAuthenticated()")
+    @PreAuthorize("hasRole('ADMIN')")
     String createCar(@ModelAttribute Car car){
         carService.create(car);
         return "redirect:/car";
