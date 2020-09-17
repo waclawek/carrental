@@ -23,9 +23,15 @@ public class RentService {
     }
     
     public List<Rent> getAllByClientId(int id){
-        return repository.getAll().stream().filter(rent -> rent.getClientId() == id).collect(Collectors.toList());
+        List<Rent> rents = repository.getAll();
+
+        for (Rent rent : rents) {
+            if(!Integer.valueOf(rent.getClientId()).equals(id)){
+                rents.remove(rent);
+            }
+        }
+        return rents;
+
     }
-
-
 
 }

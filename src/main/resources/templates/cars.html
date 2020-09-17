@@ -8,7 +8,7 @@
 
 </head>
 <body>
-<!--<div th:replace="fragments/navibar :: navigation"></div>-->
+<div th:replace="fragments/navibar :: navigation"></div>
 
 <p> Hello to Car list page choose your car</p>
 
@@ -26,7 +26,12 @@
         <td><span th:text="${car.model}"></span> </td>
         <td><span th:text="${car.productionYear}"></span></td>
         <td><span th:text="${car.dailyRate}"></span></td>
-        <td><a class="btn btn-primary" th:href="@{rent/add}" role="button">Rent car</a></td>
+        <td>
+            <form method="get" th:action="@{/rent/add}">
+                <input hidden name="carId" th:name="carId" th:value="${car.id}">
+                <button class="btn btn-primary btn-sm" type="submit">Rent car</button>
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>

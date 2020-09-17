@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add rent</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+</head>
+<body>
+<div th:replace="fragments/navibar :: navigation"></div>
+
+<h5>You are about to rent this amazing vehicle:</h5>
+<br>
+<table>
+    <thead>
+    <td>make</td>
+    <td>model</td>
+    <td>production year</td>
+    <td>daily rate</td>
+    </thead>
+    <tbody>
+    <tr>
+        <td><span th:text="${rentedCar.make}"></span></td>
+        <td><span th:text="${rentedCar.model}"></span> </td>
+        <td><span th:text="${rentedCar.productionYear}"></span></td>
+        <td><span th:text="${rentedCar.dailyRate}"></span></td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+
+<form method="post" th:action="@{/rent}" th:object="${rent}">
+    <input hidden type="number" name="carId" th:field="*{carId}" value="${rent.carId}">
+    <input hidden type="number" name="clientId" th:field="*{clientId}" value="${rent.clientId}">
+
+    <div class="form-group">
+        <label for="rentStart">Rent start:</label>
+        <input type="date" id="rentStart" th:field="*{rentStart}">
+    </div>
+    <div class="form-group">
+        <label for="rentEnd">Rent end:</label>
+        <input type="date" id="rentEnd" th:field="*{rentEnd}">
+    </div>
+
+    <button type="submit" class="btn btn-outline-info">Rent this car!</button>
+</form>
+
+<a class="btn btn-primary" th:href="@{/car}" role="button">Back</a>
+
+</body>
+</html>
