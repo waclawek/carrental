@@ -7,6 +7,8 @@ import pl.waclawek.carrental.domain.client.Client;
 
 import java.time.LocalDate;
 
+//todo refactor user / client
+
 @Builder
 @Getter
 @Setter
