@@ -33,7 +33,7 @@
 
 <form method="post" th:action="@{/rent}" th:object="${rent}">
     <input hidden type="number" name="carId" th:field="*{carId}" value="${rent.carId}">
-    <input hidden type="number" name="clientId" th:field="*{clientId}" value="${rent.clientId}">
+    <input hidden type="number" name="userId" th:field="*{userId}" value="${rent.userId}">
 
     <div class="form-group">
         <label for="rentStart">Rent start:</label>

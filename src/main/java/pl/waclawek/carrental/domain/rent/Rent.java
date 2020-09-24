@@ -21,6 +21,6 @@ public class Rent {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate rentEnd;
     private int carId;
-    private int clientId;
+    private int userId;
 
 }

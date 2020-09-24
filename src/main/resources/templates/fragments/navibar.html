@@ -8,7 +8,8 @@
     <div sec:authorize="hasRole('ADMIN')">
         <a th:href="@{/user/all}">Users</a> |
         <a th:href="@{/car/all}">Cars</a> |
-        <a th:href="@{/rent/all}">Rents</a> |
+        <a th:href="@{/rent/allByCar}">Rents By Car</a> |
+        <a th:href="@{/rent/allByUser}">Rents By User</a> |
         <form method="post" th:action="@{/logout}">
             <button type="submit" class="btn btn-outline-secondary btn-sm">Logout</button>
         </form>
@@ -16,7 +17,7 @@
 
     <div sec:authorize="hasRole('USER')">
         <a th:href="@{/car}">Cars</a> |
-        <a th:href="@{/rent}">Rents</a> |
+        <a th:href="@{/rent}">My Rents</a> |
         <form method="post" th:action="@{/logout}">
             <button type="submit" class="btn btn-outline-secondary btn-sm">Logout</button>
         </form>

@@ -5,6 +5,7 @@ import pl.waclawek.carrental.domain.car.Car;
 import pl.waclawek.carrental.domain.client.Client;
 import pl.waclawek.carrental.external.car.CarEntity;
 import pl.waclawek.carrental.external.client.ClientEntity;
+import pl.waclawek.carrental.external.user.UserEntity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -25,8 +26,8 @@ public class RentEntity {
     @JoinColumn(name = "car_id")
     private CarEntity rentedCar;
     @ManyToOne
-    @JoinColumn(name = "client_id")
-    private ClientEntity client;
+    @JoinColumn(name = "user_id")
+    private UserEntity userEntity;
 
 
 }

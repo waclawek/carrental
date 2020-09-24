@@ -1,21 +1,18 @@
 package pl.waclawek.carrental.mvc;
 
 import lombok.RequiredArgsConstructor;
-import org.dom4j.rule.Mode;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.thymeleaf.extras.springsecurity5.util.SpringSecurityContextUtils;
 import pl.waclawek.carrental.domain.car.Car;
 import pl.waclawek.carrental.domain.car.CarService;
 import pl.waclawek.carrental.domain.rent.Rent;
 import pl.waclawek.carrental.domain.rent.RentService;
 import pl.waclawek.carrental.domain.user.UserService;
 
-import javax.servlet.http.Cookie;
 import java.util.List;
 
 @Controller
@@ -35,6 +32,24 @@ public class RentController {
         return mav;
     }
 
+    @GetMapping("/allByCar")
+    @PreAuthorize("hasRole('ADMIN')")
+    ModelAndView getAllRentsByCar() {
+        ModelAndView mav = new ModelAndView("rentsByCar.html");
+        mav.addObject("rents", rentService.getAll());
+        mav.addObject("cars", carService.findAll());
+        return mav;
+    }
+
+    @GetMapping("/allByUser")
+    @PreAuthorize("hasRole('ADMIN')")
+    ModelAndView getAllRentsByUser() {
+        ModelAndView mav = new ModelAndView("rentsByUser.html");
+        mav.addObject("rents", rentService.getAll());
+        mav.addObject("users", userService.getAll());
+        return mav;
+    }
+
     @GetMapping
     @PreAuthorize("isAuthenticated()")
     ModelAndView myRentsPage() {
@@ -42,7 +57,7 @@ public class RentController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         int userId = userService.getIdByUsername(username);
-        List<Rent> userRents =  rentService.getAllByClientId(userId);
+        List<Rent> userRents =  rentService.getAllByUserId(userId);
         mav.addObject("rents", userRents);
         return mav;
     }
@@ -53,7 +68,7 @@ public class RentController {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         int clientId = userService.getIdByUsername(username);
         ModelAndView mav = new ModelAndView("addRent.html");
-        Rent newRent = Rent.builder().carId(carId).clientId(clientId).build();
+        Rent newRent = Rent.builder().carId(carId).userId(clientId).build();
         mav.addObject("rent", newRent);
         Car rentedCar = carService.findById(carId);
         mav.addObject("rentedCar", rentedCar);

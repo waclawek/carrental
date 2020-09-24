@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+// REFACTOR! changed architecture that rent is related to user not Client!
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

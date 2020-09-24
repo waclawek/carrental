@@ -2,10 +2,8 @@ package pl.waclawek.carrental.domain.rent;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.waclawek.carrental.domain.user.UserRepository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -22,11 +20,23 @@ public class RentService {
        return repository.getAll();
     }
     
-    public List<Rent> getAllByClientId(int id){
+    public List<Rent> getAllByUserId(int id){
         List<Rent> rents = repository.getAll();
 
         for (Rent rent : rents) {
-            if(!Integer.valueOf(rent.getClientId()).equals(id)){
+            if(!Integer.valueOf(rent.getUserId()).equals(id)){
+                rents.remove(rent);
+            }
+        }
+        return rents;
+
+    }
+
+    public List<Rent> getAllByCarId(int id){
+        List<Rent> rents = repository.getAll();
+
+        for (Rent rent : rents) {
+            if(!Integer.valueOf(rent.getCarId()).equals(id)){
                 rents.remove(rent);
             }
         }

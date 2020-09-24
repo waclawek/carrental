@@ -2,12 +2,11 @@ package pl.waclawek.carrental.external.rent;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import pl.waclawek.carrental.domain.car.CarService;
 import pl.waclawek.carrental.domain.rent.Rent;
 import pl.waclawek.carrental.domain.rent.RentRepository;
 import pl.waclawek.carrental.external.car.CarRepositoryJPA;
 import pl.waclawek.carrental.external.client.ClientRepositoryJPA;
-import pl.waclawek.carrental.external.client.DataBaseClientRepository;
+import pl.waclawek.carrental.external.user.UserRepositoryJPA;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,8 +19,7 @@ public class DataBaseRepository implements RentRepository{
 
     private final RentRepositoryJPA rentRepositoryJPA;
     private final CarRepositoryJPA carRepositoryJPA;
-    private final ClientRepositoryJPA clientRepositoryJPA;
-
+    private final UserRepositoryJPA userRepositoryJPA;
 
     @Override
     public void create(Rent rent) {
@@ -30,7 +28,7 @@ public class DataBaseRepository implements RentRepository{
                 .rentStart(rent.getRentStart())
                 .rentEnd(rent.getRentEnd())
                 .rentedCar(carRepositoryJPA.getOne(rent.getCarId()))
-                .client(clientRepositoryJPA.getOne(rent.getClientId()))
+                .userEntity(userRepositoryJPA.getOne(rent.getUserId()))
                 .build();
 
         rentRepositoryJPA.save(rentEntity);
@@ -54,7 +52,7 @@ public class DataBaseRepository implements RentRepository{
                 rE.getRentStart(),
                 rE.getRentEnd(),
                 rE.getRentedCar().getId(),
-                rE.getClient().getId());
+                rE.getUserEntity().getId());
     }
 
     @Override

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Rents by user</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+<div th:replace="fragments/navibar :: navigation"></div>
+
+<tr th:each="user : ${users}">
+    <div>
+        <h3>User:</h3>
+        <table>
+            <thead>
+            <td>id</td>
+            <td>username</td>
+            <td>role</td>
+            </thead>
+            <tbody>
+            <tr>
+                <td><span th:text="${user.id}"></span></td>
+                <td><span th:text="${user.username}"></span></td>
+                <td><span th:text="${user.role}"></span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <table>
+            <thead>
+            <td>Id</td>
+            <td>rent start</td>
+            <td>rent end</td>
+            <td>user id</td>
+            </thead>
+            <tbody>
+            <tr th:each="rent : ${rents}">
+                <span th:if="${rent.userId == user.id}">
+                <td><span th:text="${rent.id}"></span></td>
+                <td><span th:text="${rent.rentStart}"></span></td>
+                <td><span th:text="${rent.rentEnd}"></span></td>
+                <td><span th:text="${rent.userId}"></span></td>
+                </span>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+</tr>
+
+</body>
+</html>
